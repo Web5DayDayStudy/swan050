@@ -17,12 +17,11 @@ generate_random_string() {
   tr -dc 'a-z' < /dev/urandom | head -c 10
 }
 
-read -p "请输入IP 钱包地址 私钥去掉0x 助记词 质押金额(每次消耗0.0005): " IP ADDRESS PRIVATE_KEY MNEMONIC COLLATERAL_AMOUNT
+read -p "请输入IP 钱包地址 私钥去掉0x 质押金额(每次消耗0.0005): " IP ADDRESS PRIVATE_KEY COLLATERAL_AMOUNT
 
 echo "IP: $IP"
 echo "钱包地址: $ADDRESS"
 echo "私钥去掉0x: $PRIVATE_KEY"
-echo "助记词: $MNEMONIC"
 echo "质押金额: $COLLATERAL_AMOUNT"
 
 # 生成10位随机小写字母字符串
