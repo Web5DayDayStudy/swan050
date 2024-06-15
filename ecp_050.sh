@@ -80,4 +80,4 @@ sleep 5
 
 # 启动 ubi daemon
 echo ">>>启动 ubi daemon"
-./computing-provider ubi daemon
+nohup ./computing-provider ubi daemon >> cp.log 2>&1 &
