@@ -5,8 +5,6 @@ set -e
 
 ps -ef | grep computing | grep -v grep | awk '{print $2}' | xargs kill
 
-rm computing-provider
-
 # 函数：生成10位随机小写字母字符串
 generate_random_string() {
   tr -dc 'a-z' < /dev/urandom | head -c 10
