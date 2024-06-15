@@ -8,6 +8,10 @@ generate_random_string() {
   tr -dc 'a-z' < /dev/urandom | head -c 10
 }
 
+# 删除旧的运行环境
+echo ">>>删除.swan"
+rm -rf .swan/
+
 # 交互式输入参数
 read -p "请输入IP: " IP
 read -p "请输入钱包地址: " ADDRESS
@@ -29,9 +33,6 @@ else
   echo ">>>私钥文件不存在，跳过备份"
 fi
 
-# 删除旧的运行环境
-echo ">>>删除.swan"
-rm -rf .swan
 
 # 将私钥写入文件
 echo ">>>写入私钥到 private.key"
