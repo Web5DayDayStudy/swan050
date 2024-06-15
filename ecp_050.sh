@@ -3,14 +3,14 @@
 # 确保脚本在任何命令失败时退出
 set -e
 
+ps -ef | grep computing | grep -v grep | awk '{print $2}' | xargs kill
+
+rm computing-provider
+
 # 函数：生成10位随机小写字母字符串
 generate_random_string() {
   tr -dc 'a-z' < /dev/urandom | head -c 10
 }
-
-# 删除旧的运行环境
-echo ">>>删除.swan"
-rm -rf .swan/
 
 # 交互式输入参数
 read -p "请输入IP: " IP
@@ -21,6 +21,10 @@ read -p "请输入质押金额(每次消耗0.0005): " COLLATERAL_AMOUNT
 # 生成10位随机小写字母字符串
 NODE_NAME=$(generate_random_string)
 echo "生成的节点名称是：$NODE_NAME"
+
+# 删除旧的运行环境
+echo ">>>删除.swan"
+rm -rf .swan/
 
 # 根目录
 cd ~
