@@ -3,7 +3,14 @@
 # 确保脚本在任何命令失败时退出
 set -e
 
-ps -ef | grep computing | grep -v grep | awk '{print $2}' | xargs kill
+pids=$(ps -ef | grep computing | grep -v grep | awk '{print $2}')
+
+if [ -n "$pids" ]; then
+  echo "Killing processes: $pids"
+  echo $pids | xargs kill
+else
+  echo "No processes found for 'computing'."
+fi
 
 # 函数：生成10位随机小写字母字符串
 generate_random_string() {
