@@ -48,8 +48,7 @@ rm -rf computing-provider
 
 # 下载新的 computing-provider
 echo ">>>下载新的 computing-provider"
-wget https://github.com/swanchain/go-computing-provider/releases/download/v0.5.0/computing-provider
-
+wget https://github.com/swanchain/go-computing-provider/releases/download/v0.5.1/computing-provider
 # 检查下载是否成功
 if [ ! -f "computing-provider" ]; then
   echo "Error: 下载 computing-provider 失败"
