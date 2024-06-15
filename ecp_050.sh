@@ -3,49 +3,22 @@
 # 确保脚本在任何命令失败时退出
 set -e
 
-# 函数：打印使用方法
-usage() {
-  echo "Usage: $0"
-  exit 1
-}
-
 # 函数：生成10位随机小写字母字符串
 generate_random_string() {
   tr -dc 'a-z' < /dev/urandom | head -c 10
 }
 
 # 交互式输入参数
-read -p "请输入 ECP IP 地址: " IP
+read -p "请输入IP: " IP
 read -p "请输入钱包地址: " ADDRESS
-read -p "请输入私钥（去掉0x）: " PRIVATE_KEY
-read -p "请输入质押金额 (每次消耗0.0005): " COLLATERAL_AMOUNT
-
-# 参数验证
-if [ -z "$IP" ]; then
-  echo "Error: 'IP' is required."
-  usage
-fi
-
-if [ -z "$ADDRESS" ]; then
-  echo "Error: 'ADDRESS' is required."
-  usage
-fi
-
-if [ -z "$PRIVATE_KEY" ]; then
-  echo "Error: 'PRIVATE_KEY' is required."
-  usage
-fi
-
-if [ -z "$COLLATERAL_AMOUNT" ]; then
-  echo "Error: 'COLLATERAL_AMOUNT' is required."
-  usage
-fi
+read -p "请输入私钥去掉0x: " PRIVATE_KEY
+read -p "请输入质押金额(每次消耗0.0005): " COLLATERAL_AMOUNT
 
 # 生成10位随机小写字母字符串
 NODE_NAME=$(generate_random_string)
 echo "生成的节点名称是：$NODE_NAME"
 
-# 切换到用户主目录
+# 根目录
 cd ~
 
 # 备份私钥
@@ -75,7 +48,7 @@ rm -rf computing-provider
 
 # 下载新的 computing-provider
 echo ">>>下载新的 computing-provider"
-wget -q https://github.com/swanchain/go-computing-provider/releases/download/v0.5.0/computing-provider
+wget https://github.com/swanchain/go-computing-provider/releases/download/v0.5.0/computing-provider
 
 # 检查下载是否成功
 if [ ! -f "computing-provider" ]; then
@@ -107,4 +80,4 @@ sleep 5
 
 # 启动 ubi daemon
 echo ">>>启动 ubi daemon"
-./computing-pr
+./computing-provider ubi daemon
